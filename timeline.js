@@ -1822,8 +1822,8 @@ async function publishSnapshot() {
   let cssText = '', logicText = '';
   try {
     [cssText, logicText] = await Promise.all([
-      fetch('style.css').then(r => { if (\!r.ok) throw new Error(r.status); return r.text(); }),
-      fetch('timeline.js').then(r => { if (\!r.ok) throw new Error(r.status); return r.text(); })
+      fetch('style.css').then(r => { if (!r.ok) throw new Error(r.status); return r.text(); }),
+      fetch('timeline.js').then(r => { if (!r.ok) throw new Error(r.status); return r.text(); })
     ]);
   } catch(e) {
     alert('Could not fetch style.css / timeline.js.\nMake sure you are running from a web server (e.g. GitHub Pages), not file://');
