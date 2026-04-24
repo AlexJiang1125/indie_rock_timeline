@@ -80,7 +80,10 @@ const ERAS = [
     "years": "2009 - 2012",
     "color": "#f4a4c0",
     "bg": "rgba(244,164,192,0.1)",
-    "desc": "Psychedelia and nostalgia"
+    "desc": "Psychedelia and nostalgia",
+    "dualColumn": false,
+    "leftLabel": "",
+    "rightLabel": ""
   },
   {
     "id": "era_1776922305893",
@@ -115,7 +118,6 @@ const ERAS = [
     "desc": ""
   }
 ];
-
 const ENTRIES = [
   {
     "type": "note",
@@ -3169,41 +3171,55 @@ const ENTRIES = [
     "art": "https://a1.mzstatic.com/r40/Music124/v4/8c/31/fc/8c31fcb4-63b3-fdd0-a078-8e7ea3f304b4/artwork.jpg",
     "audio": "https://www.youtube.com/watch?v=-RFunvF0mDw",
     "tier": "pioneer",
-    "movement": "",
+    "movement": "internet-nostalgia",
     "artBg": "#181818",
     "artColor": "#999",
     "rating": 4,
     "tags": [],
     "review": "",
     "context": "",
-    "tracks": []
-  },
-  {
-    "type": "event",
-    "era": "era_1776312948356",
-    "year": 2026,
-    "title": "New Event",
-    "eventType": "Cultural moment",
-    "body": ""
+    "tracks": [],
+    "side": "right"
   },
   {
     "type": "album",
     "era": "era_1776312948356",
-    "year": 2026,
-    "title": "New Album",
-    "artist": "Artist",
+    "year": 2009,
+    "title": "Psychic Chasms",
+    "artist": "Neon Indian",
     "tagline": "",
-    "art": "",
-    "audio": "",
+    "art": "https://m.media-amazon.com/images/I/71RgMGFJmaL.jpg",
+    "audio": "https://open.spotify.com/track/0oSuRJjTO7DTA1ltDuQUzM",
     "tier": "",
-    "movement": "",
+    "movement": "internet-nostalgia",
     "artBg": "#181818",
     "artColor": "#999",
-    "rating": 3,
+    "rating": 4,
     "tags": [],
     "review": "",
     "context": "",
-    "tracks": []
+    "tracks": [],
+    "side": "left"
+  },
+  {
+    "type": "album",
+    "era": "era_1776312948356",
+    "year": 2010,
+    "title": "Causers of This",
+    "artist": "Toro y Moi",
+    "tagline": "",
+    "art": "https://m.media-amazon.com/images/I/912Bq-aS8FL.jpg",
+    "audio": "https://open.spotify.com/track/69IvMGnw15HXaVMSHxgrCb",
+    "tier": "",
+    "movement": "internet-nostalgia",
+    "artBg": "#181818",
+    "artColor": "#999",
+    "rating": 4,
+    "tags": [],
+    "review": "",
+    "context": "",
+    "tracks": [],
+    "side": "left"
   },
   {
     "type": "album",
@@ -3339,6 +3355,15 @@ const MOVEMENTS = [
     "dualColumn": false,
     "leftLabel": "",
     "rightLabel": ""
+  },
+  {
+    "id": "internet-nostalgia",
+    "era": "era_1776312948356",
+    "label": "Internet Nostalgia",
+    "desc": "",
+    "dualColumn": true,
+    "leftLabel": "Chillwave",
+    "rightLabel": "Vaporwave"
   }
 ];
-const SITE_CONFIG = {"kicker":"","titleHtml":"Indie Music: A Timeline","subtitle":""};
+const SITE_CONFIG = {"kicker":"The Indie Current","titleHtml":"An incomplete guide&nbsp;<div>to the history of indie rock</div>","subtitle":""};
