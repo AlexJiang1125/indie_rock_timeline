@@ -1863,6 +1863,32 @@ async function publishSnapshot() {
   document.body.removeChild(a);
   URL.revokeObjectURL(url);
 }
+function saveDataJs() {
+  const q = (v) => JSON.stringify(v, null, 2);
+  const content = [
+    'const ERAS = '        + q(ERAS)                     + ';\n',
+    'const ENTRIES = '     + q(ENTRIES)                  + ';\n',
+    '\nconst GENRES = '     + JSON.stringify(GENRES)      + ';\n',
+    'const MOVEMENTS = '   + q(MOVEMENTS)                + ';\n',
+    'const SITE_CONFIG = ' + JSON.stringify(SITE_CONFIG) + ';\n'
+  ].join('');
+  const blob = new Blob([content], { type: 'text/javascript;charset=utf-8' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url; a.download = 'data.js';
+  document.body.appendChild(a); a.click();
+  document.body.removeChild(a);
+  URL.revokeObjectURL(url);
+}
+
 // ── INIT ──
 loadPersistedData();
 buildTimeline();
+
+// Hide all edit controls when not running locally
+const _isLocal = ['localhost', '127.0.0.1', ''].includes(location.hostname);
+if (!_isLocal) {
+  const s = document.createElement('style');
+  s.textContent = '.edit-only { display: none !important }';
+  document.head.appendChild(s);
+}
