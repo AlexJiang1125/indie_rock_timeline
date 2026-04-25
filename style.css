@@ -43,6 +43,7 @@ body {
   position: absolute; inset: 0;
   background-size: cover;
   background-position: center;
+  background-repeat: no-repeat;
   opacity: 0;
   transition: opacity 1.4s ease;
 }

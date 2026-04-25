@@ -1836,7 +1836,7 @@ function initHero() {
     const slide = document.createElement('div');
     slide.className = 'hero-slide' + (i === 0 ? ' active' : '');
     if (era.image) {
-      slide.style.backgroundImage = `url(${era.image})`;
+      slide.style.backgroundImage = `url("${era.image}")`;
     } else {
       // Fallback: era color gradient
       slide.style.background =
