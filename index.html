@@ -16,11 +16,32 @@
 
 <div id="era-tint-layer"></div>
 
-<header class="site-header">
-  <div class="header-kicker">The Indie Current</div>
-  <h1>A <em>living</em><br>timeline</h1>
-  <p class="header-sub">Albums, events, and cultural moments — the story of indie music's shifting centre of gravity, 1991 to now.</p>
-  <div><button class="header-edit-btn edit-only" id="header-edit-btn" onclick="toggleHeaderEdit()">✎ Edit header</button></div>
+<header class="site-hero" id="site-hero">
+  <!-- Crossfading background slides (one per era) -->
+  <div class="hero-slides" id="hero-slides"></div>
+  <!-- Gradient overlay -->
+  <div class="hero-overlay"></div>
+  <!-- Text content -->
+  <div class="hero-content">
+    <div class="hero-top">
+      <div class="hero-kicker" id="hero-kicker">The Indie Current</div>
+      <h1 class="hero-title" id="hero-title">Indie Music: A Timeline</h1>
+      <p class="hero-sub" id="hero-sub">Albums, events, and cultural moments — the story of indie music's shifting centre of gravity, 1991 to now.</p>
+    </div>
+    <div class="hero-bottom">
+      <div class="hero-era-info">
+        <div class="hero-era-label" id="hero-era-label"></div>
+        <div class="hero-era-years" id="hero-era-years"></div>
+        <div class="hero-era-desc"  id="hero-era-desc"></div>
+      </div>
+    </div>
+  </div>
+  <!-- Navigation -->
+  <button class="hero-arrow hero-arrow-prev" onclick="heroPrev()" aria-label="Previous">&#8249;</button>
+  <button class="hero-arrow hero-arrow-next" onclick="heroNext()" aria-label="Next">&#8250;</button>
+  <div class="hero-dots" id="hero-dots"></div>
+  <!-- Edit -->
+  <button class="hero-edit-btn edit-only" id="header-edit-btn" onclick="toggleHeaderEdit()">✎ Edit header</button>
 </header>
 
 <div class="filter-bar">

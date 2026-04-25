@@ -315,6 +315,7 @@ function buildTimeline() {
 
   applyFilters();
   updateEraTint();
+  initHero();
   persist();
 }
 
@@ -733,6 +734,10 @@ function openEraEdit(eraId) {
       </div>
     </div>
     <p class="ep-hint">The accent color is used for the era band, dots, and star ratings.</p>
+    <div class="ep-field" style="margin-top:12px">
+      <label class="ep-label">Hero banner image URL</label>
+      <input id="ep-era-image" class="ep-input" value="${esc(era.image||'')}" placeholder="https://… (used as background in the hero slideshow)">
+    </div>
     <div class="ep-field" style="margin-top:16px;display:flex;align-items:center;gap:10px">
       <input type="checkbox" id="ep-dual-col" style="width:14px;height:14px;cursor:pointer" ${era.dualColumn ? 'checked' : ''}
         onchange="document.getElementById('ep-dual-col-labels').style.display=this.checked?'block':'none'">
@@ -889,6 +894,7 @@ function saveEdit() {
     era.label      = document.getElementById('ep-label-input').value;
     era.years      = document.getElementById('ep-years').value;
     era.desc       = document.getElementById('ep-desc').value;
+    era.image       = document.getElementById('ep-era-image')?.value.trim() || '';
     era.dualColumn  = document.getElementById('ep-dual-col')?.checked || false;
     era.leftLabel   = document.getElementById('ep-left-label')?.value.trim() || '';
     era.rightLabel  = document.getElementById('ep-right-label')?.value.trim() || '';
@@ -1775,39 +1781,125 @@ function loadPersistedData() {
 
 // ── HEADER EDITING ──
 function renderSiteHeader() {
-  const kicker = document.querySelector('.header-kicker');
-  const h1     = document.querySelector('.site-header h1');
-  const sub    = document.querySelector('.header-sub');
-  if (kicker && SITE_CONFIG.kicker   !== undefined) kicker.textContent = SITE_CONFIG.kicker;
-  if (h1     && SITE_CONFIG.titleHtml !== undefined) h1.innerHTML      = SITE_CONFIG.titleHtml;
-  if (sub    && SITE_CONFIG.subtitle  !== undefined) sub.textContent   = SITE_CONFIG.subtitle;
+  const kicker = document.getElementById('hero-kicker');
+  const h1     = document.getElementById('hero-title');
+  const sub    = document.getElementById('hero-sub');
+  if (kicker && SITE_CONFIG.kicker    !== undefined) kicker.textContent = SITE_CONFIG.kicker;
+  if (h1     && SITE_CONFIG.titleHtml !== undefined) h1.innerHTML       = SITE_CONFIG.titleHtml;
+  if (sub    && SITE_CONFIG.subtitle  !== undefined) sub.textContent    = SITE_CONFIG.subtitle;
 }
 
 let _headerEditMode = false;
 function toggleHeaderEdit() {
   _headerEditMode = !_headerEditMode;
   const targets = [
-    document.querySelector('.header-kicker'),
-    document.querySelector('.site-header h1'),
-    document.querySelector('.header-sub'),
+    document.getElementById('hero-kicker'),
+    document.getElementById('hero-title'),
+    document.getElementById('hero-sub'),
   ];
   const btn = document.getElementById('header-edit-btn');
   targets.forEach(el => {
     if (!el) return;
     el.contentEditable = _headerEditMode ? 'true' : 'false';
-    el.classList.toggle('header-editable-active', _headerEditMode);
+    el.style.outline   = _headerEditMode ? '1px dashed rgba(255,255,255,0.5)' : '';
+    el.style.borderRadius = _headerEditMode ? '2px' : '';
   });
   btn.textContent = _headerEditMode ? '✓ Done editing' : '✎ Edit header';
   if (!_headerEditMode) {
-    const kicker = document.querySelector('.header-kicker');
-    const h1     = document.querySelector('.site-header h1');
-    const sub    = document.querySelector('.header-sub');
+    const kicker = document.getElementById('hero-kicker');
+    const h1     = document.getElementById('hero-title');
+    const sub    = document.getElementById('hero-sub');
     if (kicker) SITE_CONFIG.kicker    = kicker.textContent.trim();
     if (h1)     SITE_CONFIG.titleHtml = h1.innerHTML;
     if (sub)    SITE_CONFIG.subtitle  = sub.textContent.trim();
     persist();
   }
 }
+
+// ── HERO SLIDESHOW ──
+let _heroIndex  = 0;
+let _heroTimer  = null;
+let _heroReady  = false;
+const HERO_MS   = 6000;
+
+function initHero() {
+  const slidesEl = document.getElementById('hero-slides');
+  const dotsEl   = document.getElementById('hero-dots');
+  if (!slidesEl || !dotsEl) return;
+
+  // Rebuild slides & dots from current ERAS
+  slidesEl.innerHTML = '';
+  dotsEl.innerHTML   = '';
+
+  ERAS.forEach((era, i) => {
+    // Slide background
+    const slide = document.createElement('div');
+    slide.className = 'hero-slide' + (i === 0 ? ' active' : '');
+    if (era.image) {
+      slide.style.backgroundImage = `url(${era.image})`;
+    } else {
+      // Fallback: era color gradient
+      slide.style.background =
+        `linear-gradient(135deg, ${era.color}cc 0%, ${era.color}55 60%, #0d0a07 100%)`;
+    }
+    slidesEl.appendChild(slide);
+
+    // Dot
+    const dot = document.createElement('button');
+    dot.className = 'hero-dot' + (i === 0 ? ' active' : '');
+    dot.setAttribute('aria-label', era.label);
+    dot.addEventListener('click', () => heroGoTo(i));
+    dotsEl.appendChild(dot);
+  });
+
+  // Update text for slide 0
+  _heroIndex = 0;
+  _heroUpdateText();
+
+  // Mouse pause — attach only once
+  if (!_heroReady) {
+    const hero = document.getElementById('site-hero');
+    if (hero) {
+      hero.addEventListener('mouseenter', () => { clearInterval(_heroTimer); _heroTimer = null; });
+      hero.addEventListener('mouseleave', _heroStartTimer);
+    }
+    _heroReady = true;
+  }
+
+  _heroStartTimer();
+}
+
+function _heroStartTimer() {
+  if (_heroTimer) clearInterval(_heroTimer);
+  _heroTimer = setInterval(() => heroGoTo(_heroIndex + 1), HERO_MS);
+}
+
+function _heroUpdateText() {
+  const era = ERAS[_heroIndex];
+  if (!era) return;
+  const label = document.getElementById('hero-era-label');
+  const years = document.getElementById('hero-era-years');
+  const desc  = document.getElementById('hero-era-desc');
+  if (label) label.textContent = era.label || '';
+  if (years) years.textContent = era.years || '';
+  if (desc)  desc.textContent  = era.desc  || '';
+}
+
+function heroGoTo(idx) {
+  const total = ERAS.length;
+  if (!total) return;
+  _heroIndex = ((idx % total) + total) % total;
+
+  document.querySelectorAll('.hero-slide').forEach((s, i) => s.classList.toggle('active', i === _heroIndex));
+  document.querySelectorAll('.hero-dot').forEach((d, i)   => d.classList.toggle('active', i === _heroIndex));
+  _heroUpdateText();
+
+  // Reset timer on manual navigation
+  if (_heroTimer) { clearInterval(_heroTimer); _heroStartTimer(); }
+}
+
+function heroPrev() { heroGoTo(_heroIndex - 1); }
+function heroNext() { heroGoTo(_heroIndex + 1); }
 
 function resetToDefaults() {
   if (!confirm('Reset everything to the built-in defaults? All your edits will be lost.')) return;
