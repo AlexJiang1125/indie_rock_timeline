@@ -1892,7 +1892,7 @@ function saveDataJs() {
   fetch('index.html')
     .then(r => r.text())
     .then(html => {
-      const updated = html.replace(/data\.js(\?v=[^"']*)?/, 'data.js?v=' + v);
+      const updated = html.replace(/(<script\s+src="data\.js)(\?v=[^"]*)?(")/,  '$1?v=' + v + '$3');
       _triggerDownload('index.html', updated, 'text/html;charset=utf-8');
     })
     .catch(() => {
