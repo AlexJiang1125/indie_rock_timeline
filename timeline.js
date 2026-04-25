@@ -1863,22 +1863,41 @@ async function publishSnapshot() {
   document.body.removeChild(a);
   URL.revokeObjectURL(url);
 }
+function _triggerDownload(filename, content, type) {
+  const blob = new Blob([content], { type });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url; a.download = filename;
+  document.body.appendChild(a); a.click();
+  document.body.removeChild(a);
+  URL.revokeObjectURL(url);
+}
+
 function saveDataJs() {
   const q = (v) => JSON.stringify(v, null, 2);
-  const content = [
+  const dataContent = [
     'const ERAS = '        + q(ERAS)                     + ';\n',
     'const ENTRIES = '     + q(ENTRIES)                  + ';\n',
     '\nconst GENRES = '     + JSON.stringify(GENRES)      + ';\n',
     'const MOVEMENTS = '   + q(MOVEMENTS)                + ';\n',
     'const SITE_CONFIG = ' + JSON.stringify(SITE_CONFIG) + ';\n'
   ].join('');
-  const blob = new Blob([content], { type: 'text/javascript;charset=utf-8' });
-  const url = URL.createObjectURL(blob);
-  const a = document.createElement('a');
-  a.href = url; a.download = 'data.js';
-  document.body.appendChild(a); a.click();
-  document.body.removeChild(a);
-  URL.revokeObjectURL(url);
+
+  // Download data.js
+  _triggerDownload('data.js', dataContent, 'text/javascript;charset=utf-8');
+
+  // Fetch index.html and stamp a new version on the data.js reference,
+  // then download the updated index.html so cache is busted on next deploy
+  const v = Date.now();
+  fetch('index.html')
+    .then(r => r.text())
+    .then(html => {
+      const updated = html.replace(/data\.js(\?v=[^"']*)?/, 'data.js?v=' + v);
+      _triggerDownload('index.html', updated, 'text/html;charset=utf-8');
+    })
+    .catch(() => {
+      console.warn('Could not auto-update index.html version — update data.js?v= manually if cache is stale');
+    });
 }
 
 // ── INIT ──
