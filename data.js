@@ -5,7 +5,11 @@ const ERAS = [
     "years": "? — 1976",
     "color": "#888888",
     "bg": "rgba(136,136,136,0.1)",
-    "desc": ""
+    "desc": "",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/49/Velvet_Underground_WLWH_publicity_photo.jpg/500px-Velvet_Underground_WLWH_publicity_photo.jpg",
+    "dualColumn": false,
+    "leftLabel": "",
+    "rightLabel": ""
   },
   {
     "id": "era_1776920202864",
@@ -17,25 +21,27 @@ const ERAS = [
   },
   {
     "id": "era_1776921668462",
-    "label": "The Birth of Indie: How Hardcore and Jangle Pop Converged into C86",
+    "label": "The Birth of Indie: Pioneering Sounds",
     "years": "1982 — 1986",
     "color": "#002e7a",
     "bg": "rgba(0,46,122,0.1)",
     "desc": "",
     "dualColumn": true,
     "leftLabel": "🇺🇸",
-    "rightLabel": "🇬🇧"
+    "rightLabel": "🇬🇧",
+    "image": "https://images.squarespace-cdn.com/content/v1/600594e0259ef06ca93df13f/7ea2214a-6276-4ca4-9de9-ed7293338030/TT-60410-Mats+10006.jpg?format=2500w"
   },
   {
     "id": "era_1776921994953",
-    "label": "Indie rock expands its sounds",
+    "label": "Alternative rock finds it sound",
     "years": "1986 - 1991",
     "color": "#7b219f",
     "bg": "rgba(123,33,159,0.1)",
     "desc": "",
     "dualColumn": true,
     "leftLabel": "🇺🇸",
-    "rightLabel": "🇬🇧"
+    "rightLabel": "🇬🇧",
+    "image": "https://indiehoy.com/wp-content/uploads/2021/10/my-bloody-valentine.jpg"
   },
   {
     "id": "era_1776565376316",
@@ -67,7 +73,11 @@ const ERAS = [
     "years": "2003 — 2005",
     "color": "#669c35",
     "bg": "rgba(102,156,53,0.1)",
-    "desc": "The sounds got softer but emotions became harder"
+    "desc": "The sounds got softer but emotions became harder",
+    "image": "https://beatsperminute.com/wp-content/uploads/2024/03/joanna-newsom-2.png",
+    "dualColumn": false,
+    "leftLabel": "",
+    "rightLabel": ""
   },
   {
     "id": "sleaze",
@@ -75,7 +85,11 @@ const ERAS = [
     "years": "2006 – 2009",
     "color": "#00bd8d",
     "bg": "rgba(0,189,141,0.1)",
-    "desc": "How indie rock became danceable"
+    "desc": "How indie rock became danceable",
+    "image": "https://i.imgur.com/wpEpl9J.jpeg",
+    "dualColumn": false,
+    "leftLabel": "",
+    "rightLabel": ""
   },
   {
     "id": "era_1776312948356",
@@ -86,7 +100,8 @@ const ERAS = [
     "desc": "Psychedelia and nostalgia",
     "dualColumn": false,
     "leftLabel": "",
-    "rightLabel": ""
+    "rightLabel": "",
+    "image": "https://media.pitchfork.com/photos/592c63d9d7a71d1ea569cdc8/2:1/w_2240,c_limit/d122dce9.jpg"
   },
   {
     "id": "era_1776922305893",
@@ -94,7 +109,11 @@ const ERAS = [
     "years": "2012 — 2016",
     "color": "#b92d5d",
     "bg": "rgba(185,45,93,0.1)",
-    "desc": ""
+    "desc": "",
+    "image": "https://www.billboard.com/wp-content/uploads/media/fka-twigs-press-2013-650-430.jpg?w=650&h=430&crop=1",
+    "dualColumn": false,
+    "leftLabel": "",
+    "rightLabel": ""
   },
   {
     "id": "era_1776922300349",
@@ -102,7 +121,11 @@ const ERAS = [
     "years": "2016 — 2019",
     "color": "#ff6251",
     "bg": "rgba(255,98,81,0.1)",
-    "desc": ""
+    "desc": "",
+    "image": "https://www.treblezine.com/wp-content/uploads/2014/01/angel-olsen.jpg.webp",
+    "dualColumn": false,
+    "leftLabel": "",
+    "rightLabel": ""
   },
   {
     "id": "era_1776922398542",
@@ -127,7 +150,7 @@ const ENTRIES = [
     "era": "era_1776908543422",
     "movement": "",
     "title": "",
-    "body": "Rock music entered its flop period around mid 1970s and I really struggle to put relevant rock records here. Lucky for us, so many touching, enduring pieces of great music was being made outside the Anglosphere, or in genres beyond the confines of rock that would later blend into indie."
+    "body": "So when did indie music start? Depending on the person you ask, you might get very different answers, but the textbook answer seems to be three-fold: indie/alternative rose to prominence either as a continuation (in the US) or a response (in the UK) of the punk movement of the late 1970s, which is in itself a reaction against the prog and glam-focused rock landscape in the seventies. So if we consider punk and post-punk as the pre-history of indie, everything before punk will be the dark pre-pre-history, where there's absolutely nothing interesting happening. \n\nWell, this is obviously not true thanks to the modern bible of alternative music - Velvet Underground and Nico (1967). The legacy of this album as the first defining alternative record has always mesmerized me, so much to a point that I used to think this is the only bright spot before the punk movement in the late 1970s. But if you zoom in the timeline between the two points, you would find so many interesting things in the middle, and so many unsung heroes of their time have planted their little seed for future artists to reap and creative great music. \n\nThe most evident thread is the whole proto-punk genre led by Detroit acts like MC5 and the Stooges, Velvet Underground protege the modern lovers and other influential glam rock bands like Roxy Music, New York Dolls and the Runaways. Together, these rock artists are unafraid of revealing the grittier, uglier side of rock music and channeling the chaotic, destructive energy into incredibly simple yet catchy music, which laid the foundation for the punk movement in the mere years to come. \n\nThere's another side to it -- as we will see countless times in this timeline, many things that were initially not perceived as cool will inexplicably become cool again (and vice versa) -- \n\nRock music entered its flop era around mid 1970s and I really struggle to put relevant rock records here. Lucky for us, so many touching, enduring pieces of great music was being made outside the Anglosphere, or in genres beyond the confines of rock that would later blend into indie."
   },
   {
     "type": "album",
@@ -135,7 +158,7 @@ const ENTRIES = [
     "year": 1964,
     "title": "Presenting the Fabulous Ronettes",
     "artist": "The Ronettes",
-    "tagline": "Shoegaze",
+    "tagline": "Shoegaze. The legendary be my babeat",
     "art": "https://m.media-amazon.com/images/I/71sl15j3tzL.jpg",
     "audio": "https://open.spotify.com/track/1WN4uNclrDuczTO3bCr8s1",
     "tier": "",
@@ -146,7 +169,8 @@ const ENTRIES = [
     "tags": [],
     "review": "",
     "context": "",
-    "tracks": []
+    "tracks": [],
+    "side": "right"
   },
   {
     "type": "album",
@@ -1661,6 +1685,26 @@ const ENTRIES = [
     "tagline": "",
     "art": "https://m.media-amazon.com/images/I/81BfH9ymQxL.jpg",
     "audio": "https://open.spotify.com/track/3o1nX61oecxnqXieA2ma0U",
+    "tier": "essential",
+    "movement": "",
+    "artBg": "#181818",
+    "artColor": "#999",
+    "rating": 5,
+    "tags": [],
+    "review": "",
+    "context": "",
+    "tracks": [],
+    "side": "left"
+  },
+  {
+    "type": "album",
+    "era": "era_1776921994953",
+    "year": 1989,
+    "title": "On Fire",
+    "artist": "Galaxie 500",
+    "tagline": "",
+    "art": "https://m.media-amazon.com/images/I/71jm8GwAYzL.jpg",
+    "audio": "https://open.spotify.com/track/2TTAPkrGQQOZkaUTUlt21Q",
     "tier": "essential",
     "movement": "",
     "artBg": "#181818",
@@ -3609,6 +3653,14 @@ const ENTRIES = [
     "review": "",
     "context": "",
     "tracks": []
+  },
+  {
+    "type": "event",
+    "era": "era_1776922442721",
+    "year": 2026,
+    "title": "New Event",
+    "eventType": "Cultural moment",
+    "body": ""
   }
 ];
 
@@ -3633,75 +3685,99 @@ const MOVEMENTS = [
     "desc": ""
   },
   {
-    "id": "freak-folk",
-    "era": "era_1776446456442",
-    "label": "Freak Folk",
-    "desc": ""
-  },
-  {
-    "id": "canadian-confessional-big-band-rock",
-    "era": "era_1776446456442",
-    "label": "Canadian Confessional Big Band Rock",
-    "desc": ""
-  },
-  {
-    "id": "earnest-folk-rock",
-    "era": "era_1776446456442",
-    "label": "Earnest Folk Rock",
-    "desc": ""
-  },
-  {
-    "id": "alt-country-part-ii-2000s",
-    "era": "era_1776446456442",
-    "label": "Alt-Country (Part II: 2000s)",
-    "desc": ""
-  },
-  {
     "id": "indietronica",
     "era": "sleaze",
     "label": "Indietronica",
-    "desc": "Dance music for the after hours"
+    "desc": "Dance music for the after hours",
+    "dualColumn": false,
+    "leftLabel": "",
+    "rightLabel": ""
   },
   {
     "id": "indie-pop-bands",
     "era": "sleaze",
     "label": "Indie Pop Bands",
-    "desc": "I don't like them ... but whatever works"
+    "desc": "I don't like them ... but whatever works",
+    "dualColumn": false,
+    "leftLabel": "",
+    "rightLabel": ""
   },
   {
     "id": "pitchforkcore-gadpy-and-brian-wilson-revival",
     "era": "sleaze",
     "label": "Pitchforkcore, GADPY and Brian Wilson revival",
-    "desc": "100 layers of harmonies"
+    "desc": "100 layers of harmonies",
+    "dualColumn": false,
+    "leftLabel": "",
+    "rightLabel": ""
   },
   {
     "id": "noise-pop-and-shitgaze-music",
     "era": "sleaze",
     "label": "Off-trend: Noise Pop and \"Shitgaze\" music",
-    "desc": "I can't hear a thing..."
+    "desc": "I can't hear a thing...",
+    "dualColumn": false,
+    "leftLabel": "",
+    "rightLabel": ""
   },
   {
     "id": "chamber-pop-twee-pop-and-indie-pop",
     "era": "sleaze",
     "label": "Indie Pop (Part II: 2000s)",
-    "desc": ""
+    "desc": "",
+    "dualColumn": false,
+    "leftLabel": "",
+    "rightLabel": ""
   },
   {
     "id": "off-trend-other-pioneering-sounds-in-the-2000s",
     "era": "sleaze",
     "label": "Off-trend: Other Pioneering Sounds in the 2000s",
-    "desc": "These records can be released 10 years later and would sound aged a day..."
+    "desc": "These records can be released 10 years later and would sound aged a day...",
+    "dualColumn": false,
+    "leftLabel": "",
+    "rightLabel": ""
   },
   {
     "id": "shoegaze-part-ii-2000s",
     "era": "sleaze",
     "label": "Shoegaze (Part II: 2000s)",
-    "desc": ""
+    "desc": "",
+    "dualColumn": false,
+    "leftLabel": "",
+    "rightLabel": ""
   },
   {
-    "id": "off-trend",
-    "era": "era_1776921668462",
-    "label": "Off-trend",
+    "id": "freak-folk",
+    "era": "era_1776446456442",
+    "label": "Freak Folk",
+    "desc": "",
+    "dualColumn": false,
+    "leftLabel": "",
+    "rightLabel": ""
+  },
+  {
+    "id": "canadian-confessional-big-band-rock",
+    "era": "era_1776446456442",
+    "label": "Canadian Confessional Big Band Rock",
+    "desc": "",
+    "dualColumn": false,
+    "leftLabel": "",
+    "rightLabel": ""
+  },
+  {
+    "id": "earnest-folk-rock",
+    "era": "era_1776446456442",
+    "label": "Earnest Folk Rock",
+    "desc": "",
+    "dualColumn": false,
+    "leftLabel": "",
+    "rightLabel": ""
+  },
+  {
+    "id": "alt-country-part-ii-2000s",
+    "era": "era_1776446456442",
+    "label": "Alt-Country (Part II: 2000s)",
     "desc": "",
     "dualColumn": false,
     "leftLabel": "",
@@ -3717,6 +3793,15 @@ const MOVEMENTS = [
     "rightLabel": "Vaporwave"
   },
   {
+    "id": "off-trend",
+    "era": "era_1776921668462",
+    "label": "Off-trend",
+    "desc": "",
+    "dualColumn": false,
+    "leftLabel": "",
+    "rightLabel": ""
+  },
+  {
     "id": "industrial",
     "era": "era_1776921994953",
     "label": "Industrial",
@@ -3726,4 +3811,4 @@ const MOVEMENTS = [
     "rightLabel": ""
   }
 ];
-const SITE_CONFIG = {"kicker":"The Indie Current","titleHtml":"An incomplete guide&nbsp;<div>to the history of indie rock</div>","subtitle":""};
+const SITE_CONFIG = {"kicker":"The Indie Current","titleHtml":"An incomplete guide&nbsp;<div>to the history of indie music</div>","subtitle":""};
