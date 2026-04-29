@@ -666,13 +666,14 @@ function openEntryEdit(idx) {
           <select id="ep-era" class="ep-select">${eraOptions}</select>
         </div>
       </div>
+      ${eraMap[entry.era]?.dualColumn ? `
       <div class="ep-field" id="ep-side-field">
         <label class="ep-label">Column</label>
         <select id="ep-side" class="ep-select">
           <option value="right"${(entry.side||'right')==='right'?' selected':''}>Right</option>
           <option value="left"${entry.side==='left'?' selected':''}>Left</option>
         </select>
-      </div>
+      </div>` : `<div id="ep-side-field" style="display:none"><select id="ep-side" class="ep-select"><option value="right" selected>Right</option><option value="left">Left</option></select></div>`}
       <div class="ep-field">
         <label class="ep-label">Event Type</label>
         <input id="ep-eventtype" class="ep-input" value="${esc(entry.eventType||'Cultural moment')}">
@@ -695,13 +696,13 @@ function openEntryEdit(idx) {
 
   function updateSideFieldVisibility() {
     if (!sideField) return;
+    const eraId  = eraSelEl?.value;
+    const eraDual = eraMap[eraId]?.dualColumn || false;
     if (entry.type === 'event') {
-      sideField.style.display = '';
+      sideField.style.display = eraDual ? '' : 'none';
       return;
     }
-    const eraId = eraSelEl?.value;
-    const movId = movSelEl?.value;
-    const eraDual = eraMap[eraId]?.dualColumn || false;
+    const movId  = movSelEl?.value;
     const movDual = MOVEMENTS.find(m => m.id === movId)?.dualColumn || false;
     sideField.style.display = (eraDual || movDual) ? '' : 'none';
   }
