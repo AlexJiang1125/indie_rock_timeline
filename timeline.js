@@ -1778,9 +1778,17 @@ function loadPersistedData() {
     if (!raw) return;
     const saved = JSON.parse(raw);
     if (Array.isArray(saved.eras) && saved.eras.length) {
+      // Keep data.js defaults so newly added fields (dualColumn, image, etc.)
+      // are filled in even when the saved era predates them
+      const defaults = {};
+      ERAS.forEach(e => defaults[e.id] = { ...e });
       ERAS.length = 0;
       Object.keys(eraMap).forEach(k => delete eraMap[k]);
-      saved.eras.forEach(e => { ERAS.push(e); eraMap[e.id] = e; });
+      saved.eras.forEach(e => {
+        const merged = { ...(defaults[e.id] || {}), ...e };
+        ERAS.push(merged);
+        eraMap[merged.id] = merged;
+      });
     }
     if (Array.isArray(saved.entries) && saved.entries.length) {
       ENTRIES.length = 0;
