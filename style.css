@@ -265,6 +265,7 @@ body {
 }
 .entry:hover .entry-dot { transform: scale(1.5); }
 .entry-year-label {
+  display: inline-block;
   font-family: 'DM Mono', monospace; font-size: 11px;
   color: var(--text2); margin-top: 6px; letter-spacing: .06em;
   writing-mode: vertical-rl; text-orientation: mixed;
@@ -274,7 +275,10 @@ body {
   padding: 5px 2px;
   position: relative; z-index: 3;
   border-radius: 2px;
+  text-decoration: none;
+  transition: color .15s ease, background .15s ease;
 }
+.entry-year-label:hover { color: var(--accent); background: color-mix(in srgb, var(--accent) 8%, var(--bg)); }
 .entry-year-label.hidden { visibility: hidden; }
 .entry.same-year .entry-dot { display: none; }
 .entry-body {

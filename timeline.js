@@ -26,6 +26,14 @@ function esc(s) {
   return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;');
 }
 
+function bestOfYearHref(year) {
+  return `best-of-year.html?year=${encodeURIComponent(year)}`;
+}
+
+function yearLabelHtml(year, hidden) {
+  return `<a class="entry-year-label${hidden ? ' hidden' : ''}" href="${bestOfYearHref(year)}" title="Open best albums of ${esc(year)}">${year}</a>`;
+}
+
 function stars(n, eraColor) {
   return [1,2,3,4,5].map(i =>
     `<span class="star ${i<=n?'on':'off'}">${i<=n?'★':'☆'}</span>`
@@ -136,7 +144,7 @@ function buildTimeline() {
       groupItems.forEach(({entry, idx}) => {
         const showYear = entry.year !== lastYear;
         lastYear = entry.year;
-        const yearLabel = `<div class="entry-year-label${showYear ? '' : ' hidden'}">${entry.year}</div>`;
+        const yearLabel = yearLabelHtml(entry.year, !showYear);
 
         const entryEl = document.createElement('div');
         const tierCls = entry.type === 'album' && entry.tier ? ` tier-${entry.tier}` : '';
@@ -231,7 +239,7 @@ function buildTimeline() {
         spineDiv.className = 'dual-spine-col';
         spineDiv.innerHTML = `
           <div class="entry-dot" style="background:${color}"></div>
-          <div class="entry-year-label">${year}</div>`;
+          ${yearLabelHtml(year, false)}`;
         const rightColDiv = document.createElement('div');
         rightColDiv.className = 'dual-col-right';
 
@@ -658,6 +666,13 @@ function openEntryEdit(idx) {
           <select id="ep-era" class="ep-select">${eraOptions}</select>
         </div>
       </div>
+      <div class="ep-field" id="ep-side-field">
+        <label class="ep-label">Column</label>
+        <select id="ep-side" class="ep-select">
+          <option value="right"${(entry.side||'right')==='right'?' selected':''}>Right</option>
+          <option value="left"${entry.side==='left'?' selected':''}>Left</option>
+        </select>
+      </div>
       <div class="ep-field">
         <label class="ep-label">Event Type</label>
         <input id="ep-eventtype" class="ep-input" value="${esc(entry.eventType||'Cultural moment')}">
@@ -680,6 +695,10 @@ function openEntryEdit(idx) {
 
   function updateSideFieldVisibility() {
     if (!sideField) return;
+    if (entry.type === 'event') {
+      sideField.style.display = '';
+      return;
+    }
     const eraId = eraSelEl?.value;
     const movId = movSelEl?.value;
     const eraDual = eraMap[eraId]?.dualColumn || false;
@@ -828,7 +847,7 @@ function addEntry(type) {
     movement: '', title: '', body: ''
   } : {
     type:'event', era: ERAS[ERAS.length-1].id,
-    year: new Date().getFullYear(),
+    year: new Date().getFullYear(), side:'right',
     title:'New Event', eventType:'Cultural moment', body:''
   };
   ENTRIES.push(newEntry);
@@ -887,6 +906,7 @@ function saveEdit() {
       } else {
         entry.eventType = document.getElementById('ep-eventtype').value;
         entry.body      = document.getElementById('ep-eventbody').value;
+        entry.side      = document.getElementById('ep-side')?.value || 'right';
       }
     }
   } else if (editTarget.type === 'era') {
